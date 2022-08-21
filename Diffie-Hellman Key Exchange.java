@@ -1,0 +1,45 @@
+import java.util.*;
+
+class DiffieHellman {
+    public static void main(String[]args)
+    {
+        long P,G, x, a, y, b, ka, kb;
+        Scanner sc = new Scanner(System.in);
+        System.out.println("Agree upon P and G");
+
+        System.out.println("Enter G value:");
+
+        G = sc.nextLong();
+
+        System.out.println("Enter P value:");  
+
+        P = sc.nextLong();  
+
+        System.out.println("Enter value for private key a selected by user1:");  
+        a = sc.nextLong();  
+        System.out.println("Enter value for private key b selected by user2:");  
+        b = sc.nextLong();  
+        
+        x = calculatePower(G, a, P);
+        y = calculatePower (G, b, P);
+
+        ka = calculatePower(y, a, P);
+        kb = calculatePower (x, b, P);
+
+        System.out.println("Secret key for 1 is:" + ka);
+        System.out.println("Secret key for 2 is:" +kb);
+    }
+
+    private static long calculatePower (long x, long y, long P)
+    {
+        long result = 0;
+        if (y==1){
+            return x;
+        }    
+        else{
+            result = ((long)Math.pow(x,y)) % P;
+            return result;
+        }
+    }
+}
+  
